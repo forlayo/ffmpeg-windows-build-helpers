@@ -2409,7 +2409,10 @@ build_ffmpeg() {
     else
       config_options+=" --disable-libmfx"
     fi
-    config_options+=" --enable-libaribcaption" # libaribcatption (MIT licensed)
+    
+    # This is not available on n6.0
+    # config_options+=" --enable-libaribcaption" # libaribcatption (MIT licensed)
+
     if [[ $enable_gpl == 'y' ]]; then
       config_options+=" --enable-gpl --enable-frei0r --enable-librubberband --enable-libvidstab --enable-libx264 --enable-libx265 --enable-avisynth --enable-libaribb24"
       config_options+=" --enable-libxvid --enable-libdavs2"
@@ -2649,7 +2652,9 @@ build_ffmpeg_dependencies() {
 
   build_libxvid # FFmpeg now has native support, but libxvid still provides a better image.
   build_libsrt # requires gnutls, mingw-std-threads
-  build_libaribcaption
+  
+  # build_libaribcaption # This is not available on n6.0
+
   build_libaribb24
   build_libtesseract
   build_lensfun  # requires png, zlib, iconv
